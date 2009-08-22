@@ -412,7 +412,7 @@ class RemoteOrbitalPaymentechTest < Test::Unit::TestCase
     }
     
     def test_cards
-      TEST_CARDS.reject{|k,v| @card_types[k].nil?}
+      TEST_CARDS.reject{|k,v| !@card_types.include?(k)}
     end
 
     def with_test_data(&block)
