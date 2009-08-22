@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request>
+	<NewOrder>
+		<IndustryType><%= industry_type %></IndustryType>
+		<MessageType><%= message_type %></MessageType>
+		<BIN><%= bin %></BIN>
+		<MerchantID><%= merchant_id %></MerchantID>
+		<TerminalID><%= terminal_id %></TerminalID>
+		<% if creditcard %>
+  		<CardBrand><%= card_brand_for(creditcard) %></CardBrand>
+  		<AccountNum><%= creditcard.number %></AccountNum>
+  		<Exp><%= card_expiration_for(creditcard) %></Exp>
+  	<% end %>
+		<CurrencyCode>840</CurrencyCode>
+		<CurrencyExponent>2</CurrencyExponent>
+		<% if creditcard %>
+  		<CardSecValInd><%= card_verification_indicator_for(creditcard, options) %></CardSecValInd>
+  		<CardSecVal><%= verification_value %></CardSecVal>
+		<% end %>
+		<% if options[:debit_card] %>
+  		<DebitCardIssueNum><%= options[:debit_card][:issue_number] %></DebitCardIssueNum>
+  		<% unless options[:debit_card][:issue_number] %>
+  		  <DebitCardStartDate><%= options[:debit_card][:start_date] %></DebitCardStartDate>
+  		<% end %>
+		<% end %>
+		<% if options[:electronic_check] %>
+  		<BCRtNum><%= options[:electronic_check][:routing_number] %></BCRtNum>
+  		<CheckDDA><%= options[:electronic_check][:account_number] %></CheckDDA>
+  		<BankAccountType><%= options[:electronic_check][:account_type] %></BankAccountType>
+  		<ECPAuthMethod><%= options[:electronic_check][:auth_method] %></ECPAuthMethod>
+  		<BankPmtDelv><%= ecp_delivery_method %></BankPmtDelv>
+		<% end %>
+		<% if options[:avs] %>
+  		<AVSzip><%= options[:avs][:zip] %></AVSzip>
+  		<AVSaddress1><%= options[:avs][:address1] %></AVSaddress1>
+  		<AVSaddress2><%= options[:avs][:address2] %></AVSaddress2>
+  		<AVScity><%= options[:avs][:city] %></AVScity>
+  		<AVSstate><%= options[:avs][:state] %></AVSstate>
+  		<AVSphoneNum><%= options[:avs][:phone] %></AVSphoneNum>
+  		<AVSname><%= options[:avs][:name] %></AVSname>
+  		<AVScountryCode><%= options[:avs][:country_code] %></AVScountryCode>
+  		<AVSDestzip><%= options[:avs][:dest_zip] %></AVSDestzip>
+  		<AVSDestaddress1><%= options[:avs][:dest_address1] %></AVSDestaddress1>
+  		<AVSDestaddress2><%= options[:avs][:dest_address2] %></AVSDestaddress2>
+  		<AVSDestcity><%= options[:avs][:dest_city] %></AVSDestcity>
+  		<AVSDeststate><%= options[:avs][:dest_state] %></AVSDeststate>
+  		<AVSDestphoneNum><%= options[:avs][:dest_phone] %></AVSDestphoneNum>
+  		<AVSDestname><%= options[:avs][:dest_name] %></AVSDestname>
+  		<AVSDestcountryCode><%= options[:avs][:dest_country_code] %></AVSDestcountryCode>
+		<% end %>
+		<CustomerProfileFromOrderInd><%= profile_from_order %></CustomerProfileFromOrderInd>
+		<% if options[:profile] && options[:profile][:customer_reference_number] %>
+		  <CustomerRefNum><%= options[:profile][:customer_reference_number] %></CustomerRefNum>
+		<% end %>
+		<% if options[:profile] %>
+  		<CustomerProfileOrderOverrideInd><%= profile_order_override %></CustomerProfileOrderOverrideInd>
+  		<Status><%= profile_status %></Status>
+  	<% end %>
+  	<% if options[:vbv] %>
+  		<AuthenticationECIInd><%= vbv_transaction_type %></AuthenticationECIInd>
+  		<CAVV><%= options[:vbv][:cavv] %></CAVV>
+  		<XID><%= options[:vbv][:xid] %></XID>
+  	<% end %>
+  	<% if options[:prior_auth_id] %>
+  	  <PriorAuthID><%= options[:prior_auth_id] %></PriorAuthID>
+  	<% end %>
+		<OrderID><%= order_id %></OrderID>
+		<Amount><%= money.cents %></Amount>
+		<% if options[:comments] %>
+		  <Comments><%= options[:comments] %></Comments>
+		<% end %>
+		<% if options[:shipping_preference] %>
+		  <ShippingRef><%= options[:shipping_preference] %></ShippingRef>
+		<% end %>
+		<% if options[:pc2] %>
+  		<TaxInd><%= tax_indicator %></TaxInd>
+  		<Tax><%= options[:pc2][:tax] %></Tax>
+  	<% end %>
+  	<% if options[:amex] %>
+  		<AMEXTranAdvAddn1><%= options[:amex][:txn_advice_addn1] %></AMEXTranAdvAddn1>
+  		<AMEXTranAdvAddn2><%= options[:amex][:txn_advice_addn2] %></AMEXTranAdvAddn2>
+  		<AMEXTranAdvAddn3><%= options[:amex][:txn_advice_addn3] %></AMEXTranAdvAddn3>
+  		<AMEXTranAdvAddn4><%= options[:amex][:txn_advice_addn4] %></AMEXTranAdvAddn4>
+		<% end %>
+		<% if options[:mastercard] %>
+		  <AAV><%= options[:mastercard][:aav] %></AAV>
+	  <% end %>
+	  <% if options[:sd] %>
+  		<SDMerchantName><%= options[:sd][:merchant_name] %></SDMerchantName>
+  		<SDProductDescription><%= options[:sd][:product_description] %></SDProductDescription>
+  		<SDMerchantCity><%= options[:sd][:merchant_city] %></SDMerchantCity>
+  		<SDMerchantPhone><%= options[:sd][:merchant_phone] %></SDMerchantPhone>
+  		<SDMerchantURL><%= options[:sd][:merchant_url] %></SDMerchantURL>
+  		<SDMerchantEmail><%= options[:sd][:merchant_email] %></SDMerchantEmail>
+  	<% end %>
+  	<% if txn_reference_number %>
+		  <TxRefNum><%= txn_reference_number %></TxRefNum>
+		<% end %>
+	</NewOrder>
+</Request>

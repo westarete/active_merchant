@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request>
+	<Reversal>
+		<TxRefNum><%= txn_reference_number %></TxRefNum>
+		<% if options[:txn_reference_idx] %>
+		  <TxRefIdx><%= options[:txn_reference_idx] %></TxRefIdx>
+		<% end %>
+		<% if options[:adjusted_amount] %>
+		  <AdjustedAmt><%= options[:adjusted_amount] %></AdjustedAmt>
+		<% end %>
+		<OrderID><%= order_id %></OrderID>
+		<BIN><%= bin %></BIN>
+		<MerchantID><%= merchant_id %></MerchantID>
+		<TerminalID><%= terminal_id %></TerminalID>
+		<% if options[:retry_number] %>
+		  <ReversalRetryNumber><%= options[:retry_number] %></ReversalRetryNumber>
+		<% end %>
+	</Reversal>
+</Request>

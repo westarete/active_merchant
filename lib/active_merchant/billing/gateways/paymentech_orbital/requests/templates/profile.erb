@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request>
+	<Profile>
+		<CustomerBin><%= bin %></CustomerBin>
+		<CustomerMerchantID><%= merchant_id %></CustomerMerchantID>		
+		<CustomerName><%= options[:customer_name] %></CustomerName>
+		<CustomerRefNum><%= options[:customer_reference_number] %></CustomerRefNum>
+		<CustomerAddress1><%= options[:customer_address1] %></CustomerAddress1>
+		<CustomerAddress2><%= options[:customer_address2] %></CustomerAddress2>
+		<CustomerCity><%= options[:customer_city] %></CustomerCity>
+		<CustomerState><%= options[:customer_state] %></CustomerState>
+		<CustomerZIP><%= options[:customer_zip] %></CustomerZIP>
+		<CustomerEmail><%= options[:customer_email] %></CustomerEmail>
+		<CustomerPhone><%= options[:customer_phone] %></CustomerPhone>
+		<CustomerCountryCode><%= options[:customer_country_code] %></CustomerCountryCode>
+		<CustomerProfileAction><%= profile_action %></CustomerProfileAction>
+		<CustomerProfileOrderOverrideInd><%= profile_order_override %></CustomerProfileOrderOverrideInd>
+		<CustomerProfileFromOrderInd><%= profile_from_order %></CustomerProfileFromOrderInd>
+		<OrderDefaultDescription><%= options[:order_description] %></OrderDefaultDescription>
+		<OrderDefaultAmount><%= options[:order_default_amount] %></OrderDefaultAmount>
+		<CustomerAccountType>CC</CustomerAccountType>
+		<Status><%= profile_status %></Status>
+		<% if creditcard %>
+  		<CCAccountNum><%= creditcard.number %></CCAccountNum>
+  		<CCExpireDate><%= card_expiration_for(creditcard) %></CCExpireDate>
+  	<% end %>
+		<% if options[:sd] %>
+  		<SDMerchantName><%= options[:sd][:merchant_name] %></SDMerchantName>
+  		<SDProductDescription><%= options[:sd][:product_description] %></SDProductDescription>
+  		<SDMerchantCity><%= options[:sd][:merchant_city] %></SDMerchantCity>
+  		<SDMerchantPhone><%= options[:sd][:merchant_phone] %></SDMerchantPhone>
+  		<SDMerchantURL><%= options[:sd][:merchant_url] %></SDMerchantURL>
+  		<SDMerchantEmail><%= options[:sd][:merchant_email] %></SDMerchantEmail>
+  	<% end %>
+	</Profile>
+</Request>
