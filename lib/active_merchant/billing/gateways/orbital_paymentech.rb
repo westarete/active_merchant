@@ -39,9 +39,14 @@ module ActiveMerchant #:nodoc:
       def initialize(options = {})
         @errors = []
         requires!(options, :login, :password, :merchant_id, :terminal_id, :routing_id)
-        validates(options, :merchant_id, "Merchant ID must be a 6-digit numeric value") {|mid| mid.to_s.strip =~ /^\d{6}$/}
-        validates(options, :terminal_id, "Terminal ID must be a 3-digit numeric value") {|tid| tid.to_s.strip =~ /^\d{3}$/}
         validates(options, :routing_id, "Routing ID must be either '000001' (salem) or '000002' (tampa)") {|bin| bin.to_s.strip =~/00000[12]/}
+        validates(options, :terminal_id, "Terminal ID must be a 3-digit numeric value") {|tid| tid.to_s.strip =~ /^\d{3}$/}
+        case options[:routing_id]
+        when '000001'
+          validates(options, :merchant_id, "Merchant ID must be a 6-digit numeric value") {|mid| mid.to_s.strip =~ /^\d{6}$/}
+        when '000002'
+          validates(options, :merchant_id, "Merchant ID must be a 12-digit numeric value") {|mid| mid.to_s.strip =~ /^\d{12}$/}
+        end
         validate!
 
         @options = options

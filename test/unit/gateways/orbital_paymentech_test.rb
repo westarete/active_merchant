@@ -5,7 +5,7 @@ class OrbitalPaymentechTest < Test::Unit::TestCase
 
   def setup
     @gateway = OrbitalPaymentechGateway.new(
-      :routing_id => '000002',
+      :routing_id => '000001',
       :merchant_id => '054321',
       :terminal_id => '001',
       :login => 'login',
@@ -35,6 +35,62 @@ class OrbitalPaymentechTest < Test::Unit::TestCase
     }
   end
   
+  def test_length_of_merchant_id_for_bin_1
+    assert_nothing_raised do
+      OrbitalPaymentechGateway.new(
+        :routing_id => '000001',
+        :merchant_id => '054321',   # 6 digits
+        :terminal_id => '001',
+        :login => 'login',
+        :password => 'password',
+        :test => true
+      )
+    end
+    assert_raise ArgumentError do
+      OrbitalPaymentechGateway.new(
+        :routing_id => '000001',
+        :merchant_id => '0543210',  # 7 digits
+        :terminal_id => '001',
+        :login => 'login',
+        :password => 'password',
+        :test => true
+      )
+    end
+  end
+  
+  def test_length_of_merchant_id_for_bin_2
+    assert_nothing_raised do
+      OrbitalPaymentechGateway.new(
+        :routing_id => '000002',
+        :merchant_id => '054321054321',   # 12 digits
+        :terminal_id => '001',
+        :login => 'login',
+        :password => 'password',
+        :test => true
+      )
+    end
+    assert_raise ArgumentError do
+      OrbitalPaymentechGateway.new(
+        :routing_id => '000002',
+        :merchant_id => '05432105432',    # 11 digits
+        :terminal_id => '001',
+        :login => 'login',
+        :password => 'password',
+        :test => true
+      )
+    end
+    assert_raise ArgumentError do
+      OrbitalPaymentechGateway.new(
+        :routing_id => '000002',
+        :merchant_id => '0543210543210',  # 13 digits
+        :terminal_id => '001',
+        :login => 'login',
+        :password => 'password',
+        :test => true
+      )
+    end
+  end
+    
   def test_successful_auth
     elem = NewOrderResponseElement.new
     elem.txRefNum = '12345'
