@@ -49,6 +49,16 @@ class OrbitalPaymentechTest < Test::Unit::TestCase
     assert_raise ArgumentError do
       OrbitalPaymentechGateway.new(
         :routing_id => '000001',
+        :merchant_id => '05432',    # 5 digits
+        :terminal_id => '001',
+        :login => 'login',
+        :password => 'password',
+        :test => true
+      )
+    end
+    assert_raise ArgumentError do
+      OrbitalPaymentechGateway.new(
+        :routing_id => '000001',
         :merchant_id => '0543210',  # 7 digits
         :terminal_id => '001',
         :login => 'login',
