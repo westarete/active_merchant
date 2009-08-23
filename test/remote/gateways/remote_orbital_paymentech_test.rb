@@ -386,7 +386,6 @@ class RemoteOrbitalPaymentechTest < Test::Unit::TestCase
       {:zip => '44444', :code => '6'},
       {:zip => '55555', :code => '7'},
       {:zip => '66666', :code => 'H'},
-      {:zip => '77777', :code => 'X'},
       {:zip => '77777', :code => 'Z'},
       {:zip => '88888', :code => '4'}
     ]
