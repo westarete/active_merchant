@@ -396,7 +396,7 @@ class RemoteOrbitalPaymentechTest < Test::Unit::TestCase
       {:cvv => '333', :code => 'P'}, 
       {:cvv => '444', :code => 'S'}, 
       {:cvv => '555', :code => 'U'}, 
-      {:cvv => '666', :code => ' '} 
+      {:cvv => '666', :code => nil} 
     ]
     
     TEST_CARDS = {
