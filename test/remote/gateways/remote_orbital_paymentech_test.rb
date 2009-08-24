@@ -428,16 +428,14 @@ class RemoteOrbitalPaymentechTest < Test::Unit::TestCase
               @options[:address][:zip] = avsdata[:zip]
               creditcard = credit_card(number, :verification_value => cvvdata[:cvv])
               valid = amtdata[:valid] && avsdata[:valid] && cvvdata[:valid]
-              fail_message = 
-                "failed on data: cc = #{number} : #{cvvdata[:cvv]}; amount = #{amtdata[:amount]}; zip = #{avsdata[:zip]}; " <<
-                "options: #{@options.inspect}; "
+              debug_values = "cc=#{number}, cvv=#{cvvdata[:cvv]}, amount=#{amtdata[:amount]}, zip=#{avsdata[:zip]}, options=#{@options.inspect}"
 
               tests = lambda do |response|
                 # Tampa seems to return success for everything.
                 # valid ? assert_success(response, fail_message) : assert_failure(response, fail_message)
-                assert_equal amtdata[:code], response.params['response_code'], "Bad AMT response: #{response.inspect} " << fail_message
-                assert_equal cvvdata[:code], response.cvv_result['code'], "Bad CVV response: #{response.inspect} " << fail_message
-                assert_equal avsdata[:code], response.avs_result['code'], "Bad AVS response: #{response.inspect} " << fail_message
+                assert_equal amtdata[:code], response.params['response_code'], "Bad AMT response: #{response.inspect}\nFailed on values: #{debug_values}"
+                assert_equal cvvdata[:code], response.cvv_result['code'], "Bad CVV response: #{response.inspect}\nFailed on values: #{debug_values}"
+                assert_equal avsdata[:code], response.avs_result['code'], "Bad AVS response: #{response.inspect}\nFailed on values: #{debug_values}"
               end
 
               block.call(amtdata[:amount], creditcard, @options, tests)
