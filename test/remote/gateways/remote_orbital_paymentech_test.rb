@@ -433,9 +433,9 @@ class RemoteOrbitalPaymentechTest < Test::Unit::TestCase
 
               tests = lambda do |response|
                 valid ? assert_success(response, fail_message) : assert_failure(response, fail_message)
-                assert_equal amtdata[:code], response.params['response_code'], "response: #{response.inspect} " << fail_message
-                assert_equal cvvdata[:code], response.cvv_result['code'], "response: #{response.inspect} " << fail_message
-                assert_equal avsdata[:code], response.avs_result['code'], "response: #{response.inspect} " << fail_message
+                assert_equal amtdata[:code], response.params['response_code'], "Bad AMT response: #{response.inspect} " << fail_message
+                assert_equal cvvdata[:code], response.cvv_result['code'], "Bad CVV response: #{response.inspect} " << fail_message
+                assert_equal avsdata[:code], response.avs_result['code'], "Bad AVS response: #{response.inspect} " << fail_message
               end
 
               block.call(amtdata[:amount], creditcard, @options, tests)
