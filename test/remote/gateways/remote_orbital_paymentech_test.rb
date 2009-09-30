@@ -407,7 +407,7 @@ class RemoteOrbitalPaymentechTest < Test::Unit::TestCase
       :visa                          => '4012888888881',
       :master                        => '5454545454545454',
       :american_express              => '371449635398431',
-      :discover                      => '6011601160116611',
+      :discover                      => '6011000995500000',
       :jcb                           => '3566002020140006',
       :visa_purchasing_card_ii       => '4055011111111111',
       :mastercard_purchasing_card_ii => '5405222222222226',
