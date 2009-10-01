@@ -276,10 +276,14 @@ module ActiveMerchant #:nodoc:
             country.nil? || country.strip.empty? || %w(US CA GB UK).include?(country.strip)
           end
           validates(address, :zip, "Zipcode must be in the format \d{5}(-\d{4})?") {|zip| (zip && address[:country] == 'US') ? zip.to_s.strip =~ /\d{5}(-\d{4})?/ : true}
+          
+          if address[:phone]
+            # Strip all non-numeric characters from the phone number
+            req.avsPhone = address[:phone].to_s.gsub(/[^\d]/, '')
+          end
 
           req.avsAddress1    = address[:address1].to_s if address[:address1]
           req.avsAddress2    = address[:address2].to_s if address[:address2]
-          req.avsPhone       = address[:phone].to_s    if address[:phone]
           req.avsZip         = address[:zip].to_s      if address[:zip]
           req.avsCity        = address[:city].to_s     if address[:city]
           req.avsState       = address[:state].to_s    if address[:state]
