@@ -1,5 +1,4 @@
 require 'rubygems'
-gem 'activesupport', '=2.3.2'
 require 'active_support'
 require 'lib/active_merchant'
 

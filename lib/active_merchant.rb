@@ -25,7 +25,6 @@ $:.unshift File.dirname(__FILE__)
 
 # Include rails' active support for all the core extensions we love
 require 'rubygems'
-gem 'activesupport', "=2.3.2"
 require 'active_support'
 
 begin
