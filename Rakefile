@@ -73,7 +73,7 @@ end
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
-    gemspec.name = "activemerchant"
+    gemspec.name = "active_merchant"
     gemspec.summary = "Framework and tools for dealing with credit card transactions."
     gemspec.description = "Active Merchant is a simple payment abstraction library used in and sponsored by Shopify. It is written by Tobias Luetke, Cody Fauser, and contributors. The aim of the project is to feel natural to Ruby users and to abstract as many parts as possible away from the user to offer a consistent interface across all supported gateways. This is a patched version that includes unofficial support for the Chase Paymentech Orbital gateway."
     gemspec.email = ""

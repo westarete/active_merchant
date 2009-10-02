@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{activemerchant}
+  s.name = %q{active_merchant}
   s.version = "1.4.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "active_merchant.gemspec",
      "gem-public_cert.pem",
      "generators/gateway/USAGE",
      "generators/gateway/gateway_generator.rb",
