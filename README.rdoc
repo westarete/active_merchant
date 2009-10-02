@@ -27,6 +27,7 @@ The {ActiveMerchant Wiki}[http://github.com/Shopify/active_merchant/wikis] conta
 * {Moneris}[http://www.moneris.com/] - CA
 * {NetRegistry}[http://www.netregistry.com.au] - AU
 * {NETbilling}[http://www.netbilling.com] - US
+* {Orbital Paymentech}[http://www.chasepaymentech.com] - US, CA (Includes basic support for Tampa and Salem implementations. Not officially supported.)
 * {PayJunction}[http://www.payjunction.com/] - US
 * {PaySecure}[http://www.commsecure.com.au/paysecure.shtml] - AU
 * {PayPal Express Checkout}[https://www.paypal.com/cgi-bin/webscr?cmd=xpt/merchant/ExpressCheckoutIntro-outside] - US, CA, SG, AU
