@@ -39,6 +39,19 @@ cyber_source:
 data_cash:
   login: X
   password: Y
+
+# Replace login, password, and merchant_id with your credentials
+orbital_paymentech:
+  login: 'x'
+  password: 'x'
+  merchant_id: '012345'
+  terminal_id: '001'   # Default test terminal, change only if required for cert
+  routing_id: '000001' # 000001 = Salem, 000002 = Tampa
+  certifying: false    # This flag is used to choose the set of test data for remote tests.
+  :card_types:         # List supported card types for your merchant account here.
+  - 'visa'
+  - 'master'
+  - 'american_express'
   
 efsnet:
   login: X

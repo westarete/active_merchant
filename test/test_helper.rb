@@ -7,13 +7,6 @@ require 'money'
 require 'test/unit'
 require 'mocha'
 require 'yaml'
-
-begin
-  gem 'actionpack'
-rescue LoadError
-  raise StandardError, "The view tests need ActionPack installed as gem to run"
-end
-
 require 'action_controller'
 require 'action_controller/test_process'
 require 'active_merchant/billing/integrations/action_view_helper'
@@ -65,16 +58,16 @@ module ActiveMerchant
     # 
     # A message will automatically show the inspection of the response 
     # object if things go afoul.
-    def assert_success(response)
+    def assert_success(response, message = nil)
       clean_backtrace do
-        assert response.success?, "Response failed: #{response.inspect}"
+        assert response.success?, "Response failed: #{response.inspect}#{" (#{message})" if message}"
       end
     end
     
     # The negative of +assert_success+
-    def assert_failure(response)
+    def assert_failure(response, message = nil)
       clean_backtrace do
-        assert_false response.success?, "Response expected to fail: #{response.inspect}"
+        assert_false response.success?, "Response expected to fail: #{response.inspect}#{" (#{message})" if message}"
       end
     end
     
