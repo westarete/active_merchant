@@ -306,7 +306,8 @@ module ActiveMerchant #:nodoc:
         end
 
         if (address = (options[:billing_address] || options[:address])) && address.has_key?(:phone)
-          req.customerPhone = address[:phone]
+          # Strip all non-numeric characters from the phone number
+          req.customerPhone = address[:phone].to_s.gsub(/[^\d]/, '')
         end
         
         if options.has_key?(:customer_name)
