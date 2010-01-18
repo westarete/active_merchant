@@ -247,7 +247,7 @@ module ActiveMerchant #:nodoc:
         
         if creditcard.verification_value && ['visa','discover'].include?(creditcard.type)
           req.ccCardVerifyNum = creditcard.verification_value
-          req.ccCardVerifyPresenceInd = 1
+          req.ccCardVerifyPresenceInd = 1 unless creditcard.verification_value.blank?
         end
         
         if ['switch','solo'].include?(creditcard.type)
