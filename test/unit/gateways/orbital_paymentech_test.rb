@@ -170,4 +170,27 @@ class OrbitalPaymentechTest < Test::Unit::TestCase
     assert response = @gateway.void('12345', @options.merge({:transaction_ref_index => '1'}))
     assert response.test?
    end
+   
+   def test_presence_indicator
+     # It should include ccCardVerifyNum and ccCardVerifyPresenceInd if card
+     # is a visa and cvv is present.
+     cc = credit_card('4242424242424242', :type => 'visa', :verification_value => '123')
+     request_element = NewOrderRequestElement.new
+     assert_nil request_element.ccCardVerifyNum
+     assert_nil request_element.ccCardVerifyPresenceInd
+     @gateway.send(:add_creditcard, request_element, cc)
+     assert_equal '123', request_element.ccCardVerifyNum
+     assert_equal 1, request_element.ccCardVerifyPresenceInd
+
+     # It should NOT include ccCardVerifyPresenceInd if card
+     # is a visa and cvv is not present.
+     cc = credit_card('4242424242424242', :type => 'visa', :verification_value => nil)
+     request_element = NewOrderRequestElement.new
+     assert_nil request_element.ccCardVerifyNum
+     assert_nil request_element.ccCardVerifyPresenceInd
+     @gateway.send(:add_creditcard, request_element, cc)
+     assert_nil request_element.ccCardVerifyNum
+     assert_nil request_element.ccCardVerifyPresenceInd
+   end
+
 end
