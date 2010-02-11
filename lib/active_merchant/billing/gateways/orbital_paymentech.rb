@@ -205,7 +205,9 @@ module ActiveMerchant #:nodoc:
         add_invoice(req, options)
         add_creditcard(req, creditcard)        
         add_address(req, creditcard, options)
-        add_customer_data(req, options)        
+        # Chase requested that we not include this information if we're not
+        # doing profiles.
+        # add_customer_data(req, options)        
       end
       
       # Adds the merchant identifiers to the request. These are set in the
