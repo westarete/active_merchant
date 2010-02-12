@@ -20,7 +20,7 @@ class RemoteOrbitalPaymentechTest < Test::Unit::TestCase
   def test_authorize
     if @certifying
       puts "Authorize:"
-      with_cert_data {|amt, cc, opts| @gateway.authorize(amt, cc, opts)}
+      with_cert_data(:auth) {|amt, cc, opts| @gateway.authorize(amt, cc, opts)}
     else
       with_test_data do |amt, cc, opts, tests|
         tests.call(@gateway.authorize(amt, cc, opts))
@@ -31,7 +31,7 @@ class RemoteOrbitalPaymentechTest < Test::Unit::TestCase
   def test_purchase
     if @certifying
       puts "Purchase:"
-      with_cert_data {|amt, cc, opts| @gateway.purchase(amt, cc, opts)}
+      with_cert_data(:auth_capture) {|amt, cc, opts| @gateway.purchase(amt, cc, opts)}
     else
       with_test_data do |amt, cc, opts, tests|
         tests.call(@gateway.purchase(amt, cc, opts))
