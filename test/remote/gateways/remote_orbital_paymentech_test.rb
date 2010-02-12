@@ -451,36 +451,45 @@ class RemoteOrbitalPaymentechTest < Test::Unit::TestCase
     end  
 
     def with_cert_data(operation = nil, &block)
-      tests = [
-        [ 3000,   :visa,              '111',  {:order_id => 'CERT000001', :address => address(:zip => '11111')} ],
-        [ 3801,   :visa,              '222',  {:order_id => 'CERT000002', :address => address(:zip => '33333')} ],
-        [ 4100,   :master,            '333',  {:order_id => 'CERT000003', :address => address(:zip => '44444')} ],
-        [ 1102,   :master,            '666',  {:order_id => 'CERT000004', :address => address(:zip => '88888')} ],
-        [ 105500, :american_express,  '1111', {:order_id => 'CERT000005', :address => address(:zip => '55555')} ],
-        [ 7500,   :american_express,  '555',  {:order_id => 'CERT000006', :address => address(:zip => '66666')} ],
-        [ 1000,   :discover,          '666',  {:order_id => 'CERT000007', :address => address(:zip => '77777')} ],
-        [ 6303,   :discover,          '444',  {:order_id => 'CERT000008', :address => address(:zip => '88888')} ],
-        [ 2900,   :jcb,               nil,    {:order_id => 'CERT000009', :address => address(:zip => '33333')} ]
-      ]
-
-      orders = case operation
-      when :mark_capture
-        [1,3,5,7,9]
-      when :void
-        [1,5,9]
+      tests = case operation
+      when :auth
+        [
+          [ 3000,   :visa,              '111',  {:order_id => 'CERT000001', :address => address(:zip => '11111')} ],
+          [ 3801,   :visa,              nil,    {:order_id => 'CERT000002', :address => address(:zip => '33333')} ],
+          [ 0,      :visa,              nil,    {:order_id => 'CERT000003', :address => address(:zip => '11111')} ],
+          [ 4100,   :master,            nil,    {:order_id => 'CERT000004', :address => address(:zip => '22222')} ],
+          [ 1102,   :master,            '666',  {:order_id => 'CERT000005', :address => address(:zip => '88888')} ],
+          [ 0,      :master,            nil,    {:order_id => 'CERT000006', :address => address(:zip => '22222')} ],
+          [ 105500, :american_express,  nil,    {:order_id => 'CERT000007', :address => address(:zip => '55555')} ],
+          [ 7500,   :american_express,  '2222', {:order_id => 'CERT000008', :address => address(:zip => '66666')} ],
+          [ 0,      :american_express,  nil,    {:order_id => 'CERT000009', :address => address(:zip => '33333')} ]
+        ]
+      when :auth_capture
+        [
+          [ 3000,   :visa,              '111',  {:order_id => 'CERT000001', :address => address(:zip => '11111')} ],
+          [ 3801,   :visa,              nil,    {:order_id => 'CERT000002', :address => address(:zip => '22222')} ],
+          [ 4100,   :master,            nil,    {:order_id => 'CERT000003', :address => address(:zip => '44444')} ],
+          [ 1102,   :master,            '666',  {:order_id => 'CERT000004', :address => address(:zip => '33333')} ],
+          [ 105500, :american_express,  nil,    {:order_id => 'CERT000005', :address => address(:zip => '55555')} ],
+          [ 7500,   :american_express,  '2222', {:order_id => 'CERT000006', :address => address(:zip => '66666')} ],
+          [ 1000,   :discover,          nil,    {:order_id => 'CERT000007', :address => address(:zip => '77777')} ],
+          [ 6303,   :discover,          '444',  {:order_id => 'CERT000008', :address => address(:zip => '88888')} ],
+          [ 2900,   :jcb,               nil,    {:order_id => 'CERT000009', :address => address(:zip => '33333')} ]
+        ]
       else
-        1..9 
+        puts "No cert support for #{operation} operation. Skipping it."
       end
 
       print_cert_response_header 
-      orders.each do |i|
-        amount, cardtype, cvv, opts = tests[i-1]
+      tests.each do |test|
+        amount, cardtype, cvv, opts = test
         if @card_types.include?(cardtype)
           card = credit_card(test_cards[cardtype], :verification_value => cvv, :type => cardtype.to_s)
           response = block.call(amount, card, opts)
           print_cert_response(amount, card, opts, response)
         end
       end
+      
     end
   end
 
