@@ -189,11 +189,11 @@ class OrbitalPaymentechTest < Test::Unit::TestCase
      assert_nil request_element.ccCardVerifyPresenceInd
 
      # It should NOT include ccCardVerifyPresenceInd if card
-     # is a mastercard and cvv IS present.
+     # is a mastercard and cvv IS present. But SHOULD send the CVV itself.
      cc = credit_card('5454545454545454', :type => 'mastercard', :verification_value => '333')
      request_element = NewOrderRequestElement.new
      @gateway.send(:add_creditcard, request_element, cc)
-     assert_nil request_element.ccCardVerifyNum
+     assert_equal '333', request_element.ccCardVerifyNum
      assert_nil request_element.ccCardVerifyPresenceInd
    end
 
