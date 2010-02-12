@@ -478,6 +478,7 @@ class RemoteOrbitalPaymentechTest < Test::Unit::TestCase
         ]
       else
         puts "No cert support for #{operation} operation. Skipping it."
+        return
       end
 
       print_cert_response_header 
