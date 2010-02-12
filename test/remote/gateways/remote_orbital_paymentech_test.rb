@@ -476,7 +476,7 @@ class RemoteOrbitalPaymentechTest < Test::Unit::TestCase
       orders.each do |i|
         amount, cardtype, cvv, opts = tests[i-1]
         if @card_types.include?(cardtype)
-          card = credit_card(test_cards[cardtype], :verification_value => cvv)
+          card = credit_card(test_cards[cardtype], :verification_value => cvv, :type => cardtype)
           response = block.call(amount, card, opts)
           print_cert_response(amount, card, opts, response)
         end
