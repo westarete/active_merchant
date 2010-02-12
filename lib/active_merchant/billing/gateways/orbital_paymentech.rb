@@ -247,9 +247,9 @@ module ActiveMerchant #:nodoc:
         req.ccExp = expdate(creditcard)
         req.avsName = "#{creditcard.first_name} #{creditcard.last_name}"
         
-        if creditcard.verification_value && ['visa','discover'].include?(creditcard.type)
+        if ! creditcard.verification_value.blank?
           req.ccCardVerifyNum = creditcard.verification_value
-          req.ccCardVerifyPresenceInd = 1 unless creditcard.verification_value.blank?
+          req.ccCardVerifyPresenceInd = 1 if ['visa','discover'].include?(creditcard.type)
         end
         
         if ['switch','solo'].include?(creditcard.type)
