@@ -462,7 +462,7 @@ class RemoteOrbitalPaymentechTest < Test::Unit::TestCase
           [ 0,      :master,            nil,    {:order_id => 'CERT000006', :address => address(:zip => '22222', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
           [ 105500, :american_express,  nil,    {:order_id => 'CERT000007', :address => address(:zip => '55555', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
           [ 7500,   :american_express,  '2222', {:order_id => 'CERT000008', :address => address(:zip => '66666', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
-          [ 0,      :american_express,  nil,    {:order_id => 'CERT000009', :address => address(:zip => '33333', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ]
+          [ 0,      :american_express,  nil,    {:order_id => 'CERT000009', :address => address(:zip => '33333', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
 
           # Canadian address support.
           [ 3000,   :visa,              '111',  {:order_id => 'CERT000010', :address => address} ],
@@ -477,7 +477,7 @@ class RemoteOrbitalPaymentechTest < Test::Unit::TestCase
           [ 7500,   :american_express,  '2222', {:order_id => 'CERT000006', :address => address(:zip => '66666', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
           [ 1000,   :discover,          nil,    {:order_id => 'CERT000007', :address => address(:zip => '77777', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
           [ 6303,   :discover,          '444',  {:order_id => 'CERT000008', :address => address(:zip => '88888', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
-          [ 2900,   :jcb,               nil,    {:order_id => 'CERT000009', :address => address(:zip => '33333', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ]
+          [ 2900,   :jcb,               nil,    {:order_id => 'CERT000009', :address => address(:zip => '33333', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
           
           # Canadian address support.
           [ 3000,   :visa,              '111',  {:order_id => 'CERT000010', :address => address} ],
