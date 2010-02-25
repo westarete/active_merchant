@@ -454,27 +454,33 @@ class RemoteOrbitalPaymentechTest < Test::Unit::TestCase
       tests = case operation
       when :auth
         [
-          [ 3000,   :visa,              '111',  {:order_id => 'CERT000001', :address => address(:zip => '11111')} ],
-          [ 3801,   :visa,              nil,    {:order_id => 'CERT000002', :address => address(:zip => '33333')} ],
-          [ 0,      :visa,              nil,    {:order_id => 'CERT000003', :address => address(:zip => '11111')} ],
-          [ 4100,   :master,            nil,    {:order_id => 'CERT000004', :address => address(:zip => '22222')} ],
-          [ 1102,   :master,            '666',  {:order_id => 'CERT000005', :address => address(:zip => '88888')} ],
-          [ 0,      :master,            nil,    {:order_id => 'CERT000006', :address => address(:zip => '22222')} ],
-          [ 105500, :american_express,  nil,    {:order_id => 'CERT000007', :address => address(:zip => '55555')} ],
-          [ 7500,   :american_express,  '2222', {:order_id => 'CERT000008', :address => address(:zip => '66666')} ],
-          [ 0,      :american_express,  nil,    {:order_id => 'CERT000009', :address => address(:zip => '33333')} ]
-        ]
-      when :auth_capture
-        [
-          [ 3000,   :visa,              '111',  {:order_id => 'CERT000001', :address => address(:zip => '11111')} ],
-          [ 3801,   :visa,              nil,    {:order_id => 'CERT000002', :address => address(:zip => '22222')} ],
-          [ 4100,   :master,            nil,    {:order_id => 'CERT000003', :address => address(:zip => '44444')} ],
-          [ 1102,   :master,            '666',  {:order_id => 'CERT000004', :address => address(:zip => '33333')} ],
-          [ 105500, :american_express,  nil,    {:order_id => 'CERT000005', :address => address(:zip => '55555')} ],
-          [ 7500,   :american_express,  '2222', {:order_id => 'CERT000006', :address => address(:zip => '66666')} ],
-          [ 1000,   :discover,          nil,    {:order_id => 'CERT000007', :address => address(:zip => '77777')} ],
-          [ 6303,   :discover,          '444',  {:order_id => 'CERT000008', :address => address(:zip => '88888')} ],
-          [ 2900,   :jcb,               nil,    {:order_id => 'CERT000009', :address => address(:zip => '33333')} ]
+          [ 3000,   :visa,              '111',  {:order_id => 'CERT000001', :address => address(:zip => '11111', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
+          [ 3801,   :visa,              nil,    {:order_id => 'CERT000002', :address => address(:zip => '33333', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
+          [ 0,      :visa,              nil,    {:order_id => 'CERT000003', :address => address(:zip => '11111', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
+          [ 4100,   :master,            nil,    {:order_id => 'CERT000004', :address => address(:zip => '22222', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
+          [ 1102,   :master,            '666',  {:order_id => 'CERT000005', :address => address(:zip => '88888', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
+          [ 0,      :master,            nil,    {:order_id => 'CERT000006', :address => address(:zip => '22222', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
+          [ 105500, :american_express,  nil,    {:order_id => 'CERT000007', :address => address(:zip => '55555', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
+          [ 7500,   :american_express,  '2222', {:order_id => 'CERT000008', :address => address(:zip => '66666', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
+          [ 0,      :american_express,  nil,    {:order_id => 'CERT000009', :address => address(:zip => '33333', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ]
+
+          # Canadian address support.
+          [ 3000,   :visa,              '111',  {:order_id => 'CERT000010', :address => address} ],
+        ]                                                                                                     
+      when :auth_capture                                                                                      
+        [                                                                                                     
+          [ 3000,   :visa,              '111',  {:order_id => 'CERT000001', :address => address(:zip => '11111', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
+          [ 3801,   :visa,              nil,    {:order_id => 'CERT000002', :address => address(:zip => '22222', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
+          [ 4100,   :master,            nil,    {:order_id => 'CERT000003', :address => address(:zip => '44444', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
+          [ 1102,   :master,            '666',  {:order_id => 'CERT000004', :address => address(:zip => '33333', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
+          [ 105500, :american_express,  nil,    {:order_id => 'CERT000005', :address => address(:zip => '55555', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
+          [ 7500,   :american_express,  '2222', {:order_id => 'CERT000006', :address => address(:zip => '66666', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
+          [ 1000,   :discover,          nil,    {:order_id => 'CERT000007', :address => address(:zip => '77777', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
+          [ 6303,   :discover,          '444',  {:order_id => 'CERT000008', :address => address(:zip => '88888', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ],
+          [ 2900,   :jcb,               nil,    {:order_id => 'CERT000009', :address => address(:zip => '33333', :city => 'Los Angeles', :state => 'CA', :country => 'US')} ]
+          
+          # Canadian address support.
+          [ 3000,   :visa,              '111',  {:order_id => 'CERT000010', :address => address} ],
         ]
       else
         puts "No cert support for #{operation} operation. Skipping it."
