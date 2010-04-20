@@ -870,7 +870,7 @@
 <service name="PaymentechGateway">
  <documentation>http://www.paymentech.net/download/pdf/Orbital_Gateway_Web_Services_Specification_v1.4.pdf</documentation>
  <port name="PaymentechGateway" binding="tns:PaymentechGateway">
-  <SOAP:address location="https://wsvar.paymentech.net/PaymentechGateway"/>
+  <SOAP:address location="https://ws.paymentech.net/PaymentechGateway"/>
  </port>
 </service>
 

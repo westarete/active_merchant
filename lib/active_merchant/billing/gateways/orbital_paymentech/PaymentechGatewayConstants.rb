@@ -1,6 +1,6 @@
 # This module defines the constants that are used by the Paymentech gateway.
 module PaymentechGatewayConstants      
-  TEST_URL = 'https://wsvar.paymentech.net/PaymentechGateway'
+  TEST_URL = 'https://ws.paymentech.net/PaymentechGateway'
   LIVE_URL = 'https://ws.paymentech.net/PaymentechGateway'
 
   TRANS_TYPE = {
