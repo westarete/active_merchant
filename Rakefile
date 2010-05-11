@@ -7,7 +7,7 @@ require 'rake/contrib/rubyforgepublisher'
 require File.join(File.dirname(__FILE__), 'lib', 'support', 'gateway_support')
 
 
-PKG_VERSION = "1.4.2"
+PKG_VERSION = "1.4.2.1"
 PKG_NAME = "activemerchant"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 
@@ -73,7 +73,7 @@ end
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
-    gemspec.name = "active_merchant"
+    gemspec.name = "activemerchant"
     gemspec.summary = "Framework and tools for dealing with credit card transactions."
     gemspec.description = "Active Merchant is a simple payment abstraction library used in and sponsored by Shopify. It is written by Tobias Luetke, Cody Fauser, and contributors. The aim of the project is to feel natural to Ruby users and to abstract as many parts as possible away from the user to offer a consistent interface across all supported gateways. This is a patched version that includes unofficial support for the Chase Paymentech Orbital gateway."
     gemspec.email = "scott@westarete.com"

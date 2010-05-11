@@ -4,12 +4,12 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{active_merchant}
+  s.name = %q{activemerchant}
   s.version = "1.4.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tobias Luetke", "Cody Fauser", "Scott Woods"]
-  s.date = %q{2010-05-01}
+  s.date = %q{2010-05-11}
   s.description = %q{Active Merchant is a simple payment abstraction library used in and sponsored by Shopify. It is written by Tobias Luetke, Cody Fauser, and contributors. The aim of the project is to feel natural to Ruby users and to abstract as many parts as possible away from the user to offer a consistent interface across all supported gateways. This is a patched version that includes unofficial support for the Chase Paymentech Orbital gateway.}
   s.email = %q{scott@westarete.com}
   s.extra_rdoc_files = [
@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "active_merchant.gemspec",
+     "activemerchant.gemspec",
      "gem-public_cert.pem",
      "generators/gateway/USAGE",
      "generators/gateway/gateway_generator.rb",
@@ -333,7 +333,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://activemerchant.org}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Framework and tools for dealing with credit card transactions.}
   s.test_files = [
     "test/remote/gateways/remote_authorize_net_cim_test.rb",
